@@ -135,10 +135,8 @@ impl<T: ?Sized> RwLock<T> {
     }
     #[inline]
     pub(crate) fn unlock_reader(&self) {
-        let state_ = self.state.fetch_sub(ONE_READER, Ordering::Release);
-        if state_ & READERS_MASK == 0 {
-            self.try_wake(null_mut())
-        }
+        self.state.fetch_sub(ONE_READER, Ordering::Release);
+        self.try_wake(null_mut())
     }
     #[inline]
     pub(crate) fn unlock_upgradable_reader(&self) {
