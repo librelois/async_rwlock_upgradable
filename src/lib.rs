@@ -145,7 +145,7 @@ impl<T: ?Sized> RwLock<T> {
         self.try_wake(null_mut())
     }
     #[inline]
-    pub(crate) fn unlock_writer(&self) {
+    pub(crate) fn release_writer_flag(&self) {
         self.state.fetch_sub(WRITER_FLAG, Ordering::Release);
         self.try_wake(null_mut())
     }

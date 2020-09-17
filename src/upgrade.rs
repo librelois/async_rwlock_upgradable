@@ -77,7 +77,7 @@ impl<'a, T: ?Sized> Drop for UpgradeFuture<'a, T> {
     fn drop(&mut self) {
         if !self.lock_acquired {
             if self.writer_flag_acquired {
-                self.rwlock.unlock_writer()
+                self.rwlock.release_writer_flag()
             } else {
                 self.rwlock.unlock_upgradable_reader()
             }

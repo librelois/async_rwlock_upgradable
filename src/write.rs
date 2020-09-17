@@ -78,7 +78,7 @@ impl<'a, T: ?Sized> WriteFuture<'a, T> {
 impl<'a, T: ?Sized> Drop for WriteFuture<'a, T> {
     fn drop(&mut self) {
         if !self.lock_acquired && self.writer_flag_acquired {
-            self.rwlock.unlock_writer()
+            self.rwlock.release_writer_flag()
         }
     }
 }
@@ -116,6 +116,6 @@ impl<'a, T: ?Sized> std::ops::DerefMut for WriteGuard<'a, T> {
 
 impl<'a, T: ?Sized> Drop for WriteGuard<'a, T> {
     fn drop(&mut self) {
-        self.0.unlock_writer()
+        self.0.release_writer_flag()
     }
 }
