@@ -1,0 +1,20 @@
+[package]
+name = "async_rwlock_upgradable"
+version = "0.1.0"
+authors = ["librelois <c@elo.tf>"]
+license = "Apache-2.0/MIT"
+description = "Asynchronous RwLock implementation with the capability to atomically upgrade a reader to a writer."
+readme = "README.md"
+keywords = ["mutex", "lock", "async", "spin", "concurrency"]
+categories = ["concurrency"]
+documentation = "https://docs.rs/async_rwlock_upgradable/"
+repository = "https://github.com/librelois/async_rwlock_upgradable"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[dev-dependencies]
+tokio = { version = "0.2", features = ["rt-threaded", "macros", "time"] }
+futures = "0.3"
